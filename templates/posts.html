@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% block content %}
+
+	<div class="row">
+	<div class="col-md-12" align="center">
+		<br>
+			<div class="row">
+				<div class="col-md-4">
+					<a href="{% url 'app:post' %}" class="btn btn-warning btn-lg">
+						ver todos
+					</a>
+					{% if request.user.autor %}
+					<a href="{% url 'app:crear_post' %}" class="btn btn-primary btn-lg">
+						crear nuevo post
+					</a>
+					{% endif %}
+				</div>
+				<div class="col-md-8">
+					<h3 class="text-left">
+						autores :
+					<p style="display: inline-block;">
+						{% for autor in autores %}
+							<a href="{{ autor.get_posts_url }}" class="text-info">
+								{{ autor.username }}
+							</a> ,
+						{% endfor %}
+					</p>
+					</h3>
+				</div>
+			</div>
+		<br>
+	</div>
+
+		{% for post in object_list %}
+		<div class="col-md-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3>{{ post.titulo }}</h3>
+				</div>
+				<div class="panel-body">
+					Creado el {{ post.created }}
+					<h4>
+						{% if post.autor %}
+						    Autor : 
+							<strong class="text-info">
+								{{ post.autor.get_full_name }} 
+								({{ post.autor.username }})
+							</strong>
+						{% else %}
+							Sin autor
+						{% endif %}
+					</h4>
+				</div>
+				<div class="panel-footer">
+					<a href="{{ post.get_absolute_url }}" class="btn btn-info">
+						ver mas 
+					</a>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+
+	
+
+	</div>
+
+{% endblock content %}

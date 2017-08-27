@@ -30,7 +30,7 @@ urlpatterns = [
     # api
     url(r'^api/', include('apps.api.urls', namespace='api')),
     # apps 
-    url(r'^app/', include('apps.app.urls', namespace='app')),
+    url(r'^', include('apps.app.urls', namespace='app')),
     
 
 ] + static(base.MEDIA_URL, document_root=base.MEDIA_ROOT)

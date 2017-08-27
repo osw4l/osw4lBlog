@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+{% block content %}
+	<div class="row">
+		<div class="col-md-8">
+			<h2>{{ object.titulo }}</h2>
+			<h3>creado el  {{ object.created }}</h3>
+			<h4>
+				Autor : 
+				<strong class="text-info">
+					{{ post.autor.get_full_name }} 
+								({{ post.autor.username }})
+							</strong>
+				</strong>
+			</h4>
+			<p>
+				{{ object.contenido|safe }}
+			</p>
+			<img src="{{ object.imagen }}" width="100%" alt="">
+		</div>
+		<div class="col-md-4">
+			
+		</div>
+	</div>
+{% endblock content %}
